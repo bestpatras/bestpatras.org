@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home2/bpatras/new.bestpatras.org
-    - /bin/cp -R . $DEPLOYPATH
