@@ -16,8 +16,8 @@ jobs:
         id: deployment
         with:
           token: '${{ github.token }}'
-          environment-url: http://my-app-url.com
-          environment: production
+          environment-url: http://new.bestpatras.org
+          environment: development
 
       - name: Deploy my app
         run: |
