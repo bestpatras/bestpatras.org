@@ -1,0 +1,14 @@
+pre-commit:
+  piped: true
+  commands:
+    lint-code:
+      run: "npm run lint"
+commit-msg:
+  scripts:
+    "commitlint.sh":
+      runner: bash
+pre-push:
+  parallel: false
+  commands:
+    check:
+      run: "npm run check"
