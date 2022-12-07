@@ -1,11 +1,8 @@
 pre-commit:
-  parallel: true
+  piped: true
   commands:
     lint-code:
-      run: "npm run format"
-  scripts:
-    "git-add.sh":
-      runner: bash
+      run: "npm run lint"
 commit-msg:
   scripts:
     "commitlint.sh":
