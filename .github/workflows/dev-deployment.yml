@@ -1,15 +1,27 @@
-name: Deploy
+name: Deploy GitHub repository (development branch) to cPanel
 
-on: [push]
+on:
+  push:
+    branches:
+      - development
 
 jobs:
   deploy:
-    name: Deploy my app
+    name: Deploy development branch
 
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2.1.0
+        with:
+          fetch-depth: 2
+
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
 
       - uses: chrnorm/deployment-action@v2
         name: Create GitHub deployment
@@ -21,7 +33,8 @@ jobs:
 
       - name: Deploy my app
         run: |
-          # add your deployment code here
+          npm install
+          npm run build
 
       - name: Update deployment status (success)
         if: success()
