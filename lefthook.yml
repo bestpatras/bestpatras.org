@@ -3,10 +3,13 @@ pre-commit:
   commands:
     lint-code:
       run: "npm run format"
-    commit-msg:
-      scripts:
-        "commitlint.sh":
-          runner: bash
+  scripts:
+    "git-add.sh":
+      runner: bash
+commit-msg:
+  scripts:
+    "commitlint.sh":
+      runner: bash
 pre-push:
   parallel: false
   commands:
