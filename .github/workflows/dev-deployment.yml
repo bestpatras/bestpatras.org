@@ -16,13 +16,6 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: FTP-Deploy-Action
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-
       - uses: chrnorm/deployment-action@v2
         name: Create GitHub deployment
         id: deployment
@@ -35,6 +28,13 @@ jobs:
         run: |
           npm install
           npm run build
+
+      - name: FTP-Deploy-Action
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
 
       - name: Update deployment status (success)
         if: success()
