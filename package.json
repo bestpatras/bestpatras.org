@@ -19,7 +19,7 @@
 		"@commitlint/cli": "^17.3.0",
 		"@digitalroute/cz-conventional-changelog-for-jira": "^7.4.2",
 		"@playwright/test": "^1.28.1",
-		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-static": "^1.0.0-next.48",
 		"@sveltejs/kit": "next",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
