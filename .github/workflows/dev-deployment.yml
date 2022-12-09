@@ -10,14 +10,28 @@ jobs:
     name: Deploy development branch
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18]
 
     steps:
       - uses: actions/checkout@v2.1.0
         with:
           fetch-depth: 2
 
-      - uses: chrnorm/deployment-action@v2
-        name: Create GitHub deployment
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@v2
         id: deployment
         with:
           token: "${{ github.token }}"
@@ -26,8 +40,8 @@ jobs:
 
       - name: Deploy my app
         run: |
-          npm install
-          npm run build
+          pnpm install
+          pnpm build
 
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
